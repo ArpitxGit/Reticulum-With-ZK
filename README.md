@@ -85,5 +85,76 @@ Here:
 
 # ZK in Reticulum
 
-## Link.py
+## Link.py : Exisiting
 
+![image](https://github.com/ArpitxGit/Reticulum-With-ZK/blob/ZK/Assets/Link.png)
+
+1. T1 (Server):
+
+- waited for a connection and received "Hey Y0" over a secure link.
+
+2. T2 (Client):
+
+- Requested path discovery.
+- Linked with server.
+- Sent "Hey Yo".
+
+This means: Reticulum is announcing, discovering, and linking as expected.
+
+Both nodes can exchange application-level data.
+
+## zkLink.py : Hacked
+
+### Concept:
+
+- Client holds a shared_secret.
+- Server issues a nonce challenge (random string).
+- Client replies with SHA256(shared_secret + nonce).
+- Server verifies it by recomputing the same.
+
+**mock version using SHA256-based challenge-response logic**
+
+![image](https://github.com/ArpitxGit/Reticulum-With-ZK/blob/ZK/Assets/zkLink.png)
+
+- Server sends nonce challenge →
+- Client replies with correct SHA256 proof →
+- Server accepts proof and unlocks messaging →
+- Messages sent/received as expected.
+
+The logs show:
+
+- ✅ Proof verification success on server side
+- Client sends messages → Server receives it
+- Server sends back confirmation reply → Client receives it
+- Then link eventually closes cleanly.
+
+# Future Programmable Work
+
+## zkLinkTODO.py
+
+Part | Code Section | What to Implement
+
+ZK Proof | client_loop() (before prompt) | Replace zkproof:valid with an actual ZK proof string
+
+ZK Verify | server_receive_initial_proof() | Verify the ZK proof based on your scheme
+
+Secure Flow | client_connected() → server_packet_received() | Only allow general messaging after ZK pass
+
+# Mobile Economy 5G GSMA
+
+![image](https://github.com/ArpitxGit/Reticulum-With-ZK/blob/ZK/Assets/Mobile-Economy-2025-GSMA.png)
+
+# Subscriber & Tech Trends
+
+![image](https://github.com/ArpitxGit/Reticulum-With-ZK/blob/ZK/Assets/Sub&Tech-Trends.png)
+
+# ZK in Telco
+
+![image](https://github.com/ArpitxGit/Reticulum-With-ZK/blob/ZK/Assets/zkInTelco.png)
+
+# Network Slicing
+
+- [Network Slicing : SoK](https://dungexn.notion.site/Network-Slicing-SoK-2130fed242918041b46cddf6aac01e67?source=copy_link)
+- [Network Slicing : Tech Stack](https://dungexn.notion.site/Network-Slicing-Tech-Stack-2130fed2429180e686ccc3765e07ed87?source=copy_link)
+- [Nokio vs Ericsson](https://dungexn.notion.site/NOKIO-vs-Ericsson-2130fed2429180278fabdc091ef67878?source=copy_link)
+- [Global Tech Stack Comparison](https://dungexn.notion.site/Network-Slicing-Tech-Comparison-2130fed2429180469a5ec81a6d11b7ba?source=copy_link)
